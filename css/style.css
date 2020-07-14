@@ -1,0 +1,68 @@
+a{
+    text-decoration: none;
+    color: #222;
+}
+
+body{
+    margin: 0;
+    font-weight: 300;
+    color: #222;
+    background-color: #f4f4f4;
+
+    /* body안의 내부 요소 중앙정렬 */
+    display: flex;
+    justify-content: center;  /*가로 중앙*/
+    align-items: center;      /*세로중앙*/
+    height: 100vh;            /*높이값 정해줘야->중앙정렬됨*/ 
+}
+
+.gnb {
+    list-style: none;   /*li시 자동으로 생기는 점을 아예 없앰*/
+    padding: 0;         /*li시 자동으로 생기는 패딩을 없앰*/
+    margin : 0;         /*li시 자동으로 생기는 마진을 없앰*/
+    width: 600px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);   /*그림자 추가*/
+    padding: 50px 30px;
+}
+
+.gnb li{
+/* li를 가로정렬하는 방법(1) 권장*/
+    float : left;    /*요소를 왼쪽 정렬시킴*/
+    width : 120px;   /*하600전체넓이/5개의 메뉴 = 120   li한개의 넓이를 120*/
+    text-align: center;
+
+/* li를 가로정렬하는 방법(2) 
+    gnb{display: flex;}  li들이 가로배치됨
+    flex : 1             1로 줌
+    text-align: center;
+*/
+}
+
+.gnb li a{
+    font-size: 14px;
+    position: relative;   /*가상클래스 꾸미기(1) : 부모는 상대위치로 두어 가상클래스의 위치를 고정시키기*/
+}
+
+.gnb li a:before{
+    content : '';
+    position: absolute;  /*가상클래스 꾸미기(2) : before를 절대위치로 두어 가상클래스의 위치를 고정시키기*/
+    background-color: dodgerblue;
+    height: 2px;
+    width : 0;
+    bottom: -10px;       /*가상클래스 꾸미기(3) : bottom을 주어, 글자 밑에 위치시킴*/       
+    transition: 0.5s;    /*가상클래스 꾸미기(4) : 가상클래스에 이벤트 발생시 시간 지정*/
+    
+    /*가상클래스 꾸미기(5) : 아래선이 커지면서 좌우로 퍼지게 하기
+    먼저 가상클래스를 중앙에 배치시킨다.
+    만약 왼쪽에서부터 커지게하려면-> left를 0으로 두면 됨
+    */
+    left : 50%;
+    transform: translateX(-50%);
+}
+
+.gnb li a:hover:before{
+    width : 100%;
+      
+}
